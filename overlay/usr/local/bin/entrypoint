@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -eo pipefail
+WORKING_DIR="${GITHUB_WORKSPACE}"
+
+if [[ -n "${INPUT_PATH}" ]]; then
+    WORKING_DIR="${GITHUB_WORKSPACE}/${INPUT_PATH}"
+fi
+
+pushd "${WORKING_DIR}" >/dev/null
+    ARGS=(role import)
+
+    if [[ -n "${INPUT_TOKEN}" ]]; then
+        ARGS+=(--token "${INPUT_TOKEN}")
+    fi
+
+    if [[ -n "${INPUT_BRANCH}" ]]; then
+        ARGS+=(--branch "${INPUT_BRANCH}")
+    fi
+
+    if [[ -n "${INPUT_NAME}" ]]; then
+        ARGS+=(--role-name "${INPUT_NAME}")
+    fi
+
+    if [[ "${INPUT_VERBOSE}" == "true" || "${INPUT_VERBOSE}" == "1" ]]; then
+        ARGS+=(-vvv)
+    fi
+
+    if [[ -n "${INPUT_SERVER}" ]]; then
+        ARGS+=(--server "${INPUT_SERVER}")
+    fi
+
+    if [[ "${INPUT_IGNORE_CERTS}" == "true" || "${INPUT_IGNORE_CERTS}" == "1" ]]; then
+        ARGS+=(--ignore-certs)
+    fi
+
+    ARGS+=(
+        "$(echo $GITHUB_REPOSITORY | cut -d/ -f1)"
+        "$(echo $GITHUB_REPOSITORY | cut -d/ -f2)"
+    )
+
+    echo "::group::ansible-galaxy --version"
+    ansible-galaxy --version
+    echo "::endgroup::"
+
+    echo "::group::ansible-galaxy role import"
+    ansible-galaxy "${ARGS[@]}"
+    echo "::endgroup::"
+popd >/dev/null

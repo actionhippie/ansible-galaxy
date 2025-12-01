@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/github-action.json
+name: 'actionhippie-ansible-galaxy'
+description: 'Upload Ansible roles to Galaxy'
+author: 'actionhippie'
+branding:
+  icon: book
+  color: green
+
+inputs:
+  token:
+    description: |
+      Token for Galaxy authentication
+    required: false
+
+  path:
+    description: |
+      Path of role directory, defaults to working dir
+    required: false
+
+  branch:
+    description: |
+      Name of the branch to import
+    required: false
+    default: master
+
+  name:
+    description: |
+      Name of the role to import, if different than the repo name
+    required: false
+
+  verbose:
+    description: |
+      Increase logging level, defaults to `false`
+    required: false
+
+  server:
+    description: |
+      Custom Galaxy API server URL
+    required: false
+
+  ignore_certs:
+    description: |
+      Ignore SSL certificate errors, defaults to `false`
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/actionhippie/ansible-galaxy:v1.0.0'
+
+...

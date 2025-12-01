@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
+name: docker
+
+"on":
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,enable=true,event=branch
+            type=ref,enable=true,event=tag
+            type=semver,pattern=v{{version}}
+            type=semver,pattern=v{{major}}.{{minor}}
+            type=semver,pattern=v{{major}}
+          labels: |
+            org.opencontainers.image.vendor=Webhippie
+            maintainer=Thomas Boerger <thomas@webhippie.de>
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
+
+      - name: Docker login
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker build
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          platforms: linux/amd64,linux/arm64
+          provenance: false
+          push: ${{ github.event_name != 'pull_request' }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Update version
+        uses: nowactions/update-majorver@f2014bbbba95b635e990ce512c5653bd0f4753fb # v1
+        if: startsWith(github.ref, 'refs/tags/v')
+
+...
