@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/actionhippie/ansible-galaxy/compare/v1.0.1...v1.1.0) (2026-03-02)
+
+### Dependencies
+
+* **minor:** update alpine docker tag to v3.23 ([#3](https://github.com/actionhippie/ansible-galaxy/issues/3)) ([7383010](https://github.com/actionhippie/ansible-galaxy/commit/7383010d36a0faf8918ff2a97664e31800ebcd0e))
+* **patch:** update alpine:3.22 docker digest to 55ae5d2 ([#1](https://github.com/actionhippie/ansible-galaxy/issues/1)) ([d85626f](https://github.com/actionhippie/ansible-galaxy/commit/d85626f046f836cc618a84bee37593d2e2c82243))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9a30913](https://github.com/actionhippie/ansible-galaxy/commit/9a309135b0f0a2c501a20d61fad53af9db02e2ab))
+* **flake:** updated lockfile [skip ci] ([0ac2def](https://github.com/actionhippie/ansible-galaxy/commit/0ac2deff8fcbf533a58154c1bc8b3698b1b23fdc))
+* **flake:** updated lockfile [skip ci] ([83b763b](https://github.com/actionhippie/ansible-galaxy/commit/83b763b0fb48e23147e0771b2e082b45b51709dc))
+* **flake:** updated lockfile [skip ci] ([c8e6fc8](https://github.com/actionhippie/ansible-galaxy/commit/c8e6fc822edaa14c5cfc9edc28baa78e88d4d347))
+* **flake:** updated lockfile [skip ci] ([909a7f5](https://github.com/actionhippie/ansible-galaxy/commit/909a7f54136ad151d50985e8872736a6d01290c1))
+
 ## [1.0.1](https://github.com/actionhippie/ansible-galaxy/compare/v1.0.0...v1.0.1) (2026-01-19)
 
 ### Bugfixes
