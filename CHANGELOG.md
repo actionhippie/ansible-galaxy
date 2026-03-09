@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.1](https://github.com/actionhippie/ansible-galaxy/compare/v1.1.0...v1.1.1) (2026-03-09)
+
+### Dependencies
+
+* **patch:** update dependency ansible-core to v2.20.3 ([#2](https://github.com/actionhippie/ansible-galaxy/issues/2)) ([26b5e5c](https://github.com/actionhippie/ansible-galaxy/commit/26b5e5c0b3f0fb0c1a69d1951700525f6e6cbf8e))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([3813208](https://github.com/actionhippie/ansible-galaxy/commit/38132081d9d413b770da2a8a20ba7e7a556d3396))
+
 ## [1.1.0](https://github.com/actionhippie/ansible-galaxy/compare/v1.0.1...v1.1.0) (2026-03-02)
 
 ### Dependencies
