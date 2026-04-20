@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.3](https://github.com/actionhippie/ansible-galaxy/compare/v1.1.2...v1.1.3) (2026-04-20)
+
+### Dependencies
+
+* **patch:** update alpine:3.23 docker digest to 5b10f43 ([#12](https://github.com/actionhippie/ansible-galaxy/issues/12)) ([70443d1](https://github.com/actionhippie/ansible-galaxy/commit/70443d1a3b6a2d18b51daf8ec8c3b8a092c45369))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([cae2414](https://github.com/actionhippie/ansible-galaxy/commit/cae2414685cb51165ab98e5cdfa7635c0cfa98f7))
+* **flake:** updated lockfile [skip ci] ([cea55b1](https://github.com/actionhippie/ansible-galaxy/commit/cea55b1352f91b89a6449cddb7eacd9dc5f6e10d))
+* **flake:** updated lockfile [skip ci] ([a6b2c7b](https://github.com/actionhippie/ansible-galaxy/commit/a6b2c7b702c40fa6000941be0df294c881ec65eb))
+
 ## [1.1.2](https://github.com/actionhippie/ansible-galaxy/compare/v1.1.1...v1.1.2) (2026-03-30)
 
 ### Dependencies
